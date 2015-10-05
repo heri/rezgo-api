@@ -1,58 +1,47 @@
 # rezgo
 
-A simple wrapper for connecting to the [Rezgo API](http://support.rezgo.com/category/developers).
+A simple wrapper for connecting to the [Rezgo API](https://www.rezgo.com/developers/).
 
 ## Install
 
 	gem install rezgo
-	
+
 ## Usage
 
 Using the library is as simple as creating a **Rezgo::Connection** object:
 
 	conn = Rezgo::Connection.new(transcode, api_key, result_type)
-	
-Your Transcode and API Key can be found in the Rezgo Partner Portal. The result type can be one of **hash** or **raw** where **raw** will return the raw XML from the API and **hash** will return a Ruby Hash of the result.
 
-### Working with your connection in Raw mode
+The result type can be one of **hash** or **raw** where **raw** will return the raw XML from the API and **hash** will return a Ruby Hash of the result.
 
-	# Instantiate the connection
-	conn = Rezgo::Connection.new("p999", "XXX-YYYY-ZZZZ-MMM", "raw")
-	# Check we're working by calling the "Company" API call.
-	conn.company
-	=> <?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<response>\n\n<company_name><![CDATA[Flextrip]]></company_name>(...)
-	# Get region list
-	conn.region_list
-	=> <?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<response>\n\n\n\t<countries total=\"30\" all=\"0\">(...)
-
-### Working with your connection in Hash mode
+### Searches
 
 	# Instantiate the connection
 	conn = Rezgo::Connection.new("p999", "XXX-YYYY-ZZZZ-MMM", "hash")
 	# Check we're working
 	obj = conn.company
-	 => {"currency_base"=>"USD", "company_name"=>"Flextrip", "date_format"=>"Y-m-d", "gt"=>"0.00432", "country"=>"us"(...)
+	 => {"currency_base"=>"USD", "company_name"=>"Heri", "date_format"=>"Y-m-d", "gt"=>"0.00432", "country"=>"us"(...)
 	obj["company_name"]
-	=> "Flextrip"
-	# Search for tours available on 1-Jun-2011
-	obj = conn.search_items(:d => "2011-06-01")
+	=> "Heri"
+	# Search for tours available on 1-Dec-2015
+	obj = conn.search_items(:d => "2015-12-01")
 	=> {Hash of all items available on that date}
 	# See how many tours you have access to.
 	obj = conn.search_items
 	obj["item"].count
-	=> 100 
+	=> 100
 	# Get the name of the first tour.
 	obj["item"].first["name"]
 	=> "Paris Essentials Tour"
 	# Search for all tours in Canada
 	obj = conn.search_items(:f => {["country"] => "ca"})
 	=> {"gt"=>"0.02244", "total"=>"0"} # In this case, there are none.
-	
+
 ### Passing parameters
 
 Some Rezgo methods accept parameters. Most are named, but optional parameters are always passed using a Hash. Check the source for named parameters and further refer to the Rezgo API documentation for permissible parameters and values.
 
-	obj = conn.search_items({:f => {["country"] => "ca"}, :q => "kayak"})	
+	obj = conn.search_items({:f => {["country"] => "ca"}, :q => "kayak"})
 
 ## List of functions in Rezgo::Connection
 
@@ -70,10 +59,10 @@ Some Rezgo methods accept parameters. Most are named, but optional parameters ar
 
 ## Dependencies
 
-This gem depends on ActiveSupport 3.0.0+
+This gem depends on ActiveSupport
 
 ## Contributing to rezgo
- 
+
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet
 * Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it
 * Fork the project
@@ -85,4 +74,3 @@ This gem depends on ActiveSupport 3.0.0+
 ## Copyright
 
 Copyright (c) 2011 Flextrip. See LICENSE.txt for further details.
-
