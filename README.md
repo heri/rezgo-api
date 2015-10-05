@@ -71,6 +71,13 @@ This gem depends on ActiveSupport
 * Make sure to add tests for it. This is important so I don't break it in a future version unintentionally.
 * Please try not to mess with the Rakefile, version, or history. If you want to have your own version, or is otherwise necessary, that is fine, but please isolate to its own commit so I can cherry-pick around it.
 
-## Copyright
 
-Copyright (c) 2011 Flextrip. See LICENSE.txt for further details.
+## Contact
+
+Heri
+
+* [Code on Github](http://github.com/heri)
+* [I write on Medium](http://medium.com/@heri)
+* [twitter](http://twitter.com/heri)
+* Photography [Instagram](https://instagram.com/heri_rakotomalala/) [500px](https://500px.com/heri)
+* [Background site](http://madmedia.ca)
